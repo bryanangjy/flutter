@@ -997,7 +997,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
 
     // Called when this recognizer is accepted by the [GestureArena].
     if (currentDown != null) {
-      _checkTapDown(currentDown!);
+      _checkTapDown(currentDown);
     }
 
     _wonArenaForPrimaryPointer = true;
@@ -1008,7 +1008,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
     if (_start != null && eagerVictoryOnDrag) {
       assert(_dragState == _DragState.accepted);
       assert(currentUp == null);
-      _acceptDrag(_start!);
+      _acceptDrag(_start);
     }
 
     // This recognizer will wait until it is the last one in the gesture arena
@@ -1017,11 +1017,11 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
       assert(_dragState == _DragState.possible);
       assert(currentUp == null);
       _dragState = _DragState.accepted;
-      _acceptDrag(_start!);
+      _acceptDrag(_start);
     }
 
     if (currentUp != null) {
-      _checkTapUp(currentUp!);
+      _checkTapUp(currentUp);
     }
   }
 
@@ -1044,7 +1044,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
                 resolvePointer(pointer, GestureDisposition.rejected);
               }
               _dragState = _DragState.accepted;
-              _acceptDrag(currentDown!);
+              _acceptDrag(currentDown);
               _checkDragEnd();
             }
           } else {
@@ -1054,7 +1054,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
         } else {
           // The pointer is accepted as a tap.
           if (currentUp != null) {
-            _checkTapUp(currentUp!);
+            _checkTapUp(currentUp);
           }
         }
 
@@ -1107,7 +1107,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
         // received that moves the pointer a sufficient global distance to be considered a drag.
         if (_start != null && _wonArenaForPrimaryPointer) {
           _dragState = _DragState.accepted;
-          _acceptDrag(_start!);
+          _acceptDrag(_start);
         }
       }
     } else if (event is PointerUpEvent) {
@@ -1318,7 +1318,7 @@ sealed class BaseTapAndDragGestureRecognizer extends OneSequenceGestureRecognize
 
   void _didExceedDeadline() {
     if (currentDown != null) {
-      _checkTapDown(currentDown!);
+      _checkTapDown(currentDown);
 
       if (consecutiveTapCount > 1) {
         // If our consecutive tap count is greater than 1, i.e. is a double tap or greater,
